@@ -8,9 +8,10 @@
     <style>
         
         body{
-            background-image: url(./css\ image/짱구.jpg) ;
+            background-image: url(./css\ image/짱구5.jpg) ;
             background-repeat: no-repeat;
-            background: size 500px;
+            /* background: size 500px; */
+            background-size: cover;
             font-family: 'NanumGgocNaeEum';
             font-size: 20px;
             font-weight: bold;
@@ -18,9 +19,10 @@
         form{
             padding-left: 20px;
             padding-top: 50px;
+            text-align: center;
         }
         div{
-            padding-bottom: 10px;
+            padding-bottom: 30px;
         }
         input{
             height: 10px; 
@@ -29,26 +31,28 @@
         button{
             font-family: 'NanumGgocNaeEum';
             font-weight: bolder;
-            margin-left: 160px;
-            margin-top: 40px;
         }
-        
+        h1{
+            padding-top: 40px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <!-- 이건 유저를 추가하는 페이지 -->
     <!-- 숙제 : userlist 페이지를 만들어와 ?   /list -> user-list.html -> ul,li 임의로 넣어놔 만들어서 ul, div 상관 없음    -->
     <!-- POST method으로 보낸다는 뜻 -->
+    <h1>회원 등록</h1>
     <form action="/users" method="post">
         
-            <div><label>이름 <input type="text" autofocus></label></div>
-            <div><label>몇쨜 <input type="text"></label></div>
-            <div>나는야
+            <div><label>제 이름은 <input type="text" autofocus></label> 이구요</div>
+            <div><label>몇쨜 <input type="text"></label> 입니댜</div>
+            <div>저는
                 <label>멋진 남자<input type="radio" name="gender" id=""></label>
-                <label>예쁜 여자<input type="radio" name="gender" id=""></label>
+                <label>예쁜 여자<input type="radio" name="gender" id=""></label> 이구요
             </div>
-            <div><label>하는 일 <input type="text"></div></label>
-        <button type="submit">다해쪄요 !</button>
+            <div><label>하는 일은 <input type="text"></label> 입니당!</div>
+        <button type="submit">제출하기</button>
     </form>
 </body>
 </html>
