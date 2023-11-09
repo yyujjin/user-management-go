@@ -8,27 +8,30 @@
     <style>
         body{
             font-family: 'NanumGgocNaeEum';
-            background-image: url(./css\ image/짱구4.jpg);
+            background-image: url(./css\ image/짱구2.jpg);
             background-size: cover;
             background-repeat: no-repeat;
             font-weight: bold;
             color: rgb(89, 100, 100);
         }
-        ul{
-            border: 1.5px solid rgba(89, 100, 100);
-            width: 100px;
-            padding: 20px;
-            list-style: circle;
-            list-style: none;
-        }
-        li{
-            padding-bottom: 5px;
-        }
         h1{
             text-align: center;
             font-size: 50px;
-            
         }
+        table,th,td{
+            border: 2px solid  rgb(89, 100, 100);
+        }
+        table{
+            border-collapse: collapse;
+            width: 700px;
+            text-align: center;
+            margin-left: 250px;
+        }
+        thead{
+            font-size: 30px;
+            border-bottom: 7px double rgb(89, 100, 100);
+        }
+        
         
 
         
@@ -37,17 +40,42 @@
 
 <body>
     <h1>회원 목록</h1>
-        <ul>
-            <li>이름 : 박유진</li>
-            <li>나이 : 28</li>
-            <li>성별 : 여</li>
-            <li>직업 : 백조</li>
-        </ul>
-        <ul>
-            <li>이름 : 박수현</li>
-            <li>나이 : 29   </li>
-            <li>성별 : 여</li>
-            <li>직업 : 개발자</li>
-        </ul>   
+    <table>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>나이</th>
+                <th>성별</th>
+                <th>직업</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>박유진</td>
+                <td>28</td>
+                <td>여자</td>
+                <td>개발자 꿈나무</td>
+
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>박수현</td>
+                <td>29</td>
+                <td>여자</td>
+                <td>개발자</td>
+
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>박정숙</td>
+                <td>26</td>
+                <td>여자</td>
+                <td>공무원</td>
+
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

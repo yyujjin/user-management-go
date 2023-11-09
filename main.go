@@ -24,12 +24,12 @@ func main() {
 
 	
 
-	
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-		"message": "pong",
-		})
-	})
+	//굳이 없어도 되는거? 
+	// r.GET("/ping", func(c *gin.Context) {
+	// 	c.JSON(http.StatusOK, gin.H{
+	// 	"message": "pong",
+	// 	})
+	// })
 
 	r.POST("/users", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
