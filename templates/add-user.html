@@ -4,21 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/NanumGgocNaeEum.css" rel="stylesheet">
+    <style>
+        
+        body{
+            background-image: url(./css\ image/짱구.jpg) ;
+            background-repeat: no-repeat;
+            background: size 500px;
+            font-family: 'NanumGgocNaeEum';
+            font-size: 20px;
+            font-weight: bold;
+        }
+        form{
+            padding-left: 20px;
+            padding-top: 50px;
+        }
+        div{
+            padding-bottom: 10px;
+        }
+        input{
+            height: 10px; 
+            border: 1.5px solid;
+        }
+        button{
+            font-family: 'NanumGgocNaeEum';
+            font-weight: bolder;
+            margin-left: 160px;
+            margin-top: 40px;
+        }
+        
+    </style>
 </head>
 <body>
+    <!-- 이건 유저를 추가하는 페이지 -->
+    <!-- 숙제 : userlist 페이지를 만들어와 ?   /list -> user-list.html -> ul,li 임의로 넣어놔 만들어서 ul, div 상관 없음    -->
     <!-- POST method으로 보낸다는 뜻 -->
     <form action="/users" method="post">
         
-            <div>name <input type="text"></div>
-            <div>age <input type="text"></div>
-            <div>gender
-                man<input type="checkbox" name="" id="man">
-                woman<input type="checkbox" name="" id="woman">
+            <div><label>이름 <input type="text" autofocus></label></div>
+            <div><label>몇쨜 <input type="text"></label></div>
+            <div>나는야
+                <label>멋진 남자<input type="radio" name="gender" id=""></label>
+                <label>예쁜 여자<input type="radio" name="gender" id=""></label>
             </div>
-            <div>job <input type="text"></div>
-       
-        <button type="submit">제출하기</button>
+            <div><label>하는 일 <input type="text"></div></label>
+        <button type="submit">다해쪄요 !</button>
     </form>
-    <!-- name, age, gender, job -->
 </body>
 </html>
