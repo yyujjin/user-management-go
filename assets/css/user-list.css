@@ -1,0 +1,25 @@
+body{
+    font-family: 'NanumGgocNaeEum';
+    background-image: url('/assets/images/짱구7.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-weight: bold;
+    color: rgb(89, 100, 100);
+}
+h1{
+    text-align: center;
+    font-size: 50px;
+}
+table,th,td{
+    border: 2px solid  rgb(89, 100, 100);
+}
+table{
+    border-collapse: collapse;
+    width: 700px;
+    margin: auto;
+    text-align: center;
+}
+thead{
+    font-size: 30px;
+    border-bottom: 7px double rgb(89, 100, 100);
+}

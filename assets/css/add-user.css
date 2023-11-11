@@ -1,0 +1,29 @@
+body{
+    background-image: url('/assets/images/짱구3.jpg') ;
+    background-repeat: no-repeat;
+    /* background: size 500px; */
+    background-size: cover;
+    font-family: 'NanumGgocNaeEum';
+    font-size: 20px;
+    font-weight: bold;
+}
+form{
+    padding-left: 20px;
+    padding-top: 50px;
+    text-align: center;
+}
+div{
+    padding-bottom: 30px;
+}
+input{
+    height: 10px; 
+    border: 1.5px solid;
+}
+button{
+    font-family: 'NanumGgocNaeEum';
+    font-weight: bolder;
+}
+h1{
+    padding-top: 40px;
+    text-align: center;
+}

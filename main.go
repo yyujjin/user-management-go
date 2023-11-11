@@ -10,6 +10,7 @@ func main() {
   	r := gin.Default()
 	//밑에 함수는 옆에 있는 폴더에 있는 파일을 제공하겠다 라는 의미 -> 정적 파일 제공
 	//굳이 파일을 만든 이유는? 서버에 보여줬을 때 보여줄 영역을 지정하기 위해 
+	r.Static("/assets", "./assets") // 정적(이미지 같이 수정되지 않는 파일) 파일 서비스
   	r.LoadHTMLGlob("templates/*")
 	// 1. 밑에 주소를 브라우저로 접속하면 
 	r.GET("/", func(c *gin.Context) {   //localhost8080에서 / 없는 이유는? 뒤에 아무것도 안적고 싶으면 / 하나만 적으면 됨. => 루트경로
@@ -22,7 +23,10 @@ func main() {
 		c.HTML(http.StatusOK, "add-user.html", gin.H{}) //맨끝에껀 신경 안써도 됨. (gin~)
 	})
 
-	
+	r.GET("/list", func(c *gin.Context) {   
+		
+		c.HTML(http.StatusOK, "user-list.html", gin.H{}) 
+	})
 
 	//굳이 없어도 되는거? 
 	// r.GET("/ping", func(c *gin.Context) {
