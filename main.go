@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -28,19 +29,28 @@ func main() {
 		c.HTML(http.StatusOK, "user-list.html", gin.H{}) 
 	})
 
-	//굳이 없어도 되는거? 
-	// r.GET("/ping", func(c *gin.Context) {
-	// 	c.JSON(http.StatusOK, gin.H{
-	// 	"message": "pong",
-	// 	})
-	// })
-
+	//바디폼에 담긴 데이터를 객체에 추가하기위해서는 
+	//키 이름을 맞춰줘야해서 밑에는 대문자니까 옆에 form:name이라고 적어줘야함
+	type user struct {
+		Name string  `form:"name"` 
+		Age int `form:"age"` 
+		Gender bool `form:"gender"` 
+		Job string `form:"job"` 
+	}
+	users := []user{} 
+	//제출하기 버튼을 누르면 이코드 실행됨. 
 	r.POST("/users", func(c *gin.Context) {
+		var newUser user
+		if err := c.Bind(&newUser); err != nil {
+			return 
+		}
+		users = append(users,newUser)
+		fmt.Println(users)
 		c.JSON(http.StatusOK, gin.H{
-			//정상적으로 작동하면 밑에 메시지를 내보내겠다. 
-		"message": "add!",
+			
+			"user" : newUser, 
 		})
 	})
 	
-	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	r.Run()
 }
