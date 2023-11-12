@@ -1,31 +1,16 @@
 @server = http://localhost:8080
 
 
-//컨텐츠 타입은 body에 형태를 서버한테 알려주는거
-//내가 바디를 보낼건데 제이슨이야 or 폼 데이터야. 이런식
-//왜냐하면 보내는거에 따라서 서버가 읽는 방식이 다르다. 
-//바디형태랑 컨텐츠 타입이랑 일치시켜서 보내야함 아니면 에러남
-
-//josn => 키랑 밸류로 이루어져있음 (객체처럼)
-//ex) {"name" : "박유진"}  
-//주의 ! json 에서 키는 스트링이어야한다. "" 감싸주기!
-//컨텐츠 타입중 제이슨 많이 씀
-//josn 컨텐츠 타입 : application/json
-
-
-//하지만 이번에는 클라이언트가 폼에 값을 적어서 보냄
-//이건 form data 야
-// 그래서 컨텐츠 타입을 적을땐 밑에 적은것처럼 적어야돼.
-//form => 키 = 밸류 (쿼리 스트링으로 똑같음) 
-//& 이어서 적어주기 1개이상이면
-
-
-//1. 컨텐츠 타입
-//2. 바디형태
+//근데 요청할때 왜 ""로 안감쌈?
+//쿼리스트링은 문자로 자동보내지는건가
+//성별 int 로 클라이언트가 입력했을 때 스트링으로 바꾸는 법?
 POST {{server}}/users
 Content-Type: application/x-www-form-urlencoded 
+ 
+name=sora
+&age=14
+&gender=0
+&job=개발자
 
-name=yujin
-&age=28
-&gender=true
-&job=none
+###
+GET http://localhost:8080/users
