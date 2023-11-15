@@ -23,3 +23,6 @@ thead{
     font-size: 30px;
     border-bottom: 7px double rgb(89, 100, 100);
 }
+.delete{
+   background-color: black;
+}

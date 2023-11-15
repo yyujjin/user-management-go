@@ -7,10 +7,13 @@
 POST {{server}}/users
 Content-Type: application/x-www-form-urlencoded 
  
-name=sora
+name=C
 &age=14
 &gender=0
 &job=개발자
 
 ###
 GET http://localhost:8080/users
+
+###
+DELETE  http://localhost:8080/users:0

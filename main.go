@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
-
+	"strconv"
 	"github.com/gin-gonic/gin"
 )
 
@@ -25,6 +25,7 @@ func main() {
 	})
 
 	type user struct {
+		Id int `form:"id"`
 		Name string  `form:"name"` 
 		Age int `form:"age"` 
 		Gender int `form:"gender"` 
@@ -47,6 +48,25 @@ func main() {
 		})
 	})
 	
+	//user-list 삭제함수
+	r.DELETE("/users/:id", func (c *gin.Context) {
+		
+				id,_ := strconv.Atoi (c.Param("id"))  
+	
+				for index, a := range users {
+					if a.Id == id {
+						c.IndentedJSON(http.StatusOK, a)
+		
+						users = append(users[:index],users[index+1:]...)
+						return  
+					}
+				}
+				c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
+			})
+
+
+
+
 	//실제 users 배열을 가지고 오는 라우터를 만들어야 함.
 	r.GET("/users", func(c *gin.Context) {   
 		fmt.Println(users)
