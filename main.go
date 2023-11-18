@@ -25,7 +25,6 @@ func main() {
 	})
 
 	type user struct {
-		Id int `form:"id"`
 		Name string  `form:"name"` 
 		Age int `form:"age"` 
 		Gender int `form:"gender"` 
@@ -54,7 +53,7 @@ func main() {
 				id,_ := strconv.Atoi (c.Param("id"))  
 	
 				for index, a := range users {
-					if a.Id == id {
+					if index == id {
 						c.IndentedJSON(http.StatusOK, a)
 		
 						users = append(users[:index],users[index+1:]...)
