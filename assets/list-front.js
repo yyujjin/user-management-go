@@ -4,15 +4,23 @@ function makeList() {
     tbody.innerHTML = ""
     for (let i = 0; i < users.length; i++) {
         tbody.innerHTML += `<tr>
-                <td>${i}</td>
+                <td>${i+1}</td>
                 <td>${users[i].Name}</td>
                 <td>${users[i].Age}</td>
-                <td>${users[i].Gender}</td>
+                <td>${getGender(i)}</td>
                 <td>${users[i].Job}</td>
                 <td><button class="delete"></button></td>
                 <td><button class="edit"></button></td>
             </tr>`
     }
+
+function getGender(i) {
+    if (users[i].Gender == 0) {
+        return "남자"
+    }else {
+        return "여자"
+    }
+}
 
     const deleteButtons = document.querySelectorAll(".delete")
     for (let i = 0; i < deleteButtons.length; i++) {
