@@ -70,6 +70,30 @@ func main() {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
 	})
 
+	r.PUT("/users/:id", func(c *gin.Context) {
+		var editUser user
+		//Bind => 바디에 담긴 데이터를 구조체에 담아주는 함수.
+		if err := c.Bind(&editUser); err != nil {
+			return 
+		}
+		
+		
+		// 1. 주소로 인덱스 파라미터 받기
+		// 2. users의 받은 인덱스의 요소를 출력
+		id,err:= strconv.Atoi (c.Param("id"))  
+		if err != nil {
+			fmt.Println("경고")
+			c.IndentedJSON(http.StatusNotFound, gin.H{"message": "올바르지 않은 ID입니다."})
+			return
+		}
+
+		users[id]=editUser
+		
+		c.JSON(http.StatusOK, gin.H{
+			"user" : users[id], 
+		})
+	})
+
 
 
 

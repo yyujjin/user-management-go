@@ -7,7 +7,7 @@
 POST {{server}}/users
 Content-Type: application/x-www-form-urlencoded 
 
-name=5
+name=3
 &gender=1
 &job=개발자
 
@@ -16,3 +16,11 @@ GET http://localhost:8080/users
 
 ###
 DELETE  http://localhost:8080/users/10
+
+###
+PUT {{server}}/users/2
+Content-Type: application/x-www-form-urlencoded 
+
+name=5_수정
+&gender=1
+&job=개발자2
