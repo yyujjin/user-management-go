@@ -49,19 +49,26 @@ func main() {
 	
 	//user-list 삭제함수
 	r.DELETE("/users/:id", func (c *gin.Context) {
-		
-				id,_ := strconv.Atoi (c.Param("id"))  
-	
-				for index, a := range users {
-					if index == id {
-						c.IndentedJSON(http.StatusOK, a)
-		
-						users = append(users[:index],users[index+1:]...)
-						return  
-					}
-				}
-				c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
-			})
+		//Atoi = 문자를 숫자로 만들어 주는 함수
+		//근데 문제가 생길 시 0 을 내보냄 
+		id,err:= strconv.Atoi (c.Param("id"))  
+		//err 가 나면 nil이 아닌 다른게 뜸
+		fmt.Println(id, err)
+		if err != nil {
+			fmt.Println("경고")
+			c.IndentedJSON(http.StatusNotFound, gin.H{"message": "올바르지 않은 ID입니다."})
+			return
+		}
+		for index, a := range users {
+			if index == id {
+				c.IndentedJSON(http.StatusOK, a)
+
+				users = append(users[:index],users[index+1:]...)
+				return  
+			}
+		}
+		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
+	})
 
 
 

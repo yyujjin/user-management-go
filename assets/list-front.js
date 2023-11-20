@@ -35,11 +35,14 @@ async function deleteUser(i) {
         //false 일때 return 으로 함수 종료 시킴
         return
     }
+    console.log(i)
     //API를 부를 때 부르는 셋트 / 뭐든지간에 문제가생기면 catch로 가라
     //awit를 쓰려면 async 있어야 함. 지금 몰라도 됨.
     try {
         // DELETE 요청을 보냅니다.
-        await fetch(`http://localhost:8080/users/${deleteButtons[i]}`, {
+        // : 안써도 되는 이유 => 백엔드에서 파리미터를 받는 방법이라 백엔드에서 넣었고
+        //연결 이라기보단 백에드에 있는 라우터를 호출하는거라서 : 프론트에서는 값만 넣어주면 돼서 : 없어야 함
+        await fetch(`http://localhost:8080/users/${i}`, {
             method: "DELETE",
         })
 
