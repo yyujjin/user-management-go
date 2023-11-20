@@ -1,6 +1,6 @@
 const tbody = document.querySelector("tbody")
 
-function setting() {
+function makeList() {
     tbody.innerHTML = ""
     for (let i = 0; i < users.length; i++) {
         tbody.innerHTML += `<tr>
@@ -10,49 +10,49 @@ function setting() {
                 <td>${users[i].Gender}</td>
                 <td>${users[i].Job}</td>
                 <td><button class="delete"></button></td>
-                <td><button class="edit"> 수정 </button></td>
+                <td><button class="edit"></button></td>
             </tr>`
-        // deleteUser() 여기 아닌거 같은데ㅔ
     }
-    deleteUser()
+
+    const deleteButtons = document.querySelectorAll(".delete")
+    for (let i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener("click", function () {
+            deleteUser(i)
+        })
+    }
 }
 
-//삭제버튼 구현
-async function deleteUser() {
-    const deleteButtons = document.querySelectorAll(".delete")
-    console.log(deleteButtons)
-    console.log(users)
-    for (let i = 0; i < users.length; i++) {
-        deleteButtons[i].addEventListener("click", async function (i) {
-            const confirmDelete = confirm("삭제하시겠습니까?")
-            if (confirmDelete) {
-                try {
-                    // DELETE 요청을 보냅니다.
-                    const res = await fetch(
-                        `http://localhost:8080/users/${deleteButtons[i]}`,
-                        {
-                            method: "DELETE",
-                        }
-                    )
+async function deleteUser(i) {
+    //confirm = 알림창에 에/아니오 나오는 거
+    // confirm에서 예를 누르면 = true 아니오를 누르면 = false
+    const confirmDelete = confirm("삭제하시겠습니까?")
+    //1.if (confirmDelete) {  =>true 일때 실행이 돼라 (줄여슨거) 어파치 트루
+    // 1.if (confirmDelete==true) { 풀어쓴 거 / 이렇게도 쓸 수 있음
+    // 2.if (!confirmDelete) { => false일때 실행이 돼라
+    // 2. if (confirmDelete==false) { => 줄여쓴거
 
-                    if (res.ok) {
-                        // 서버 응답이 성공인 경우
-                        users.splice(i, 1)
-                        console.log(users)
-                        // deleteButtons[i].splice(i,1)
-                        console.log(deleteButtons)
-                        getUsers()
-                        // setting()
-                    } else {
-                        // 서버 응답이 실패인 경우
-                        console.error("서버 응답 오류:", res.status)
-                    }
-                } catch (error) {
-                    // 네트워크 오류 등 예외 처리
-                    console.error("네트워크 오류:", error)
-                }
-            }
+    if (!confirmDelete) {
+        //false 일때 return 으로 함수 종료 시킴
+        return
+    }
+    //API를 부를 때 부르는 셋트 / 뭐든지간에 문제가생기면 catch로 가라
+    //awit를 쓰려면 async 있어야 함. 지금 몰라도 됨.
+    try {
+        // DELETE 요청을 보냅니다.
+        await fetch(`http://localhost:8080/users/${deleteButtons[i]}`, {
+            method: "DELETE",
         })
+
+        // 서버 응답이 성공인 경우
+        // users.splice(i, 1)
+        // console.log(users)
+        // // deleteButtons[i].splice(i,1)
+        // console.log(deleteButtons)
+        getUsers()
+        // setting()
+    } catch (error) {
+        // 네트워크 오류 등 예외 처리
+        console.error("네트워크 오류:", error)
     }
 }
 
@@ -63,7 +63,7 @@ async function getUsers() {
     const data = await res.json() // 그냥 이 2코드 같이 있어야지 데이터받을 수있음.
     users = data
     console.log(users)
-    setting()
+    makeList()
     //배열안에 객체가 들어있음.
 }
 
