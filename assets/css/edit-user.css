@@ -1,0 +1,53 @@
+body{
+    font-family: 'NanumGgocNaeEum';
+    background-image: url(../images/짱구수정화면.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-weight: bold;
+    color: rgb(7, 7, 7);
+}
+table,th,td{
+    border: 2px solid  rgb(29, 31, 31);
+    border-collapse: collapse;
+
+}
+table{
+    background-color:  rgb(255, 255, 255);
+    border-collapse: collapse;
+    width: 700px;
+    margin: auto;
+    text-align: center;
+}
+thead{
+    font-size: 30px;
+    border-bottom: 7px double rgb(29, 31, 31);
+}
+h1{
+    text-align: center;
+    font-size: 50px;
+}
+
+.back{
+    font-family: 'NanumGgocNaeEum';
+    font-weight: bold;
+    background-image: url(../images/돌아가기\ 아이콘.png);
+    background-color:rgb(255, 255, 255);
+    border: solid 2px rgb(29, 31, 31);
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    padding: 15px;
+    padding-right: 50px;
+    position: relative;
+    top: 100px;
+    left: 390px;
+}
+#submit{
+    background-image: url(../images/제출\ 아이콘.png);
+    background-color:rgb(255, 255, 255);
+    border: solid 1px rgb(185, 179, 179);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 15px;
+}

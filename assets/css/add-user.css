@@ -19,11 +19,35 @@ input{
     height: 10px; 
     border: 1.5px solid;
 }
-button{
+#submit{
+    background-image: url(../images/제출\ 아이콘2.png);
     font-family: 'NanumGgocNaeEum';
-    font-weight: bolder;
+    font-weight: bold;
+    background-color:rgb(255, 255, 255);
+    border: none;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 40px;
+    background-size: 70px;
+   
 }
 h1{
     padding-top: 40px;
     text-align: center;
+}
+#back{
+    font-family: 'NanumGgocNaeEum';
+    font-weight: bold;
+    background-image: url(../images/돌아가기\ 아이콘.png);
+    background-color:rgb(255, 255, 255);
+    border: solid 2px rgb(29, 31, 31);
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    padding: 15px;
+    padding-right: 50px;
+    position: relative;
+    top: 100px;
+    left: 1000px;
 }

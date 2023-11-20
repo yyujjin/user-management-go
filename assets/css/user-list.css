@@ -43,3 +43,19 @@ thead{
     padding: 15px;
     /* background-repeat: no-repeat; */
 }
+.back{
+    font-family: 'NanumGgocNaeEum';
+    font-weight: bold;
+    color: rgb(89, 100, 100);
+    background-image: url(../images/돌아가기\ 아이콘.png);
+    background-color:rgb(255, 255, 255);
+    border: solid 2px rgb(89, 100, 100);
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    padding: 15px;
+    padding-right: 50px;
+    position: relative;
+    top: 100px;
+    left: 880px;
+}
