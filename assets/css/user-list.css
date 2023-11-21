@@ -43,7 +43,7 @@ thead{
     padding: 15px;
     /* background-repeat: no-repeat; */
 }
-.back{
+#back{
     font-family: 'NanumGgocNaeEum';
     font-weight: bold;
     color: rgb(89, 100, 100);

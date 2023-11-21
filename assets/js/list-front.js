@@ -4,7 +4,7 @@ function makeList() {
     tbody.innerHTML = ""
     for (let i = 0; i < users.length; i++) {
         tbody.innerHTML += `<tr>
-                <td>${i+1}</td>
+                <td>${i + 1}</td>
                 <td>${users[i].Name}</td>
                 <td>${users[i].Age}</td>
                 <td>${getGender(i)}</td>
@@ -13,14 +13,25 @@ function makeList() {
                 <td><button class="edit"></button></td>
             </tr>`
     }
-
-function getGender(i) {
-    if (users[i].Gender == 0) {
-        return "남자"
-    }else {
-        return "여자"
+    // 성별을 한글로 바꿔주는 함수
+    function getGender(i) {
+        if (users[i].Gender == 0) {
+            return "남자"
+        } else {
+            return "여자"
+        }
     }
-}
+    goToEdit()
+    //수정 버튼 누를 edit 페이지 이동 함수
+    function goToEdit() {
+        const edit = document.querySelectorAll(".edit")
+        for (let i = 0; i < edit.length; i++) {
+            edit[i].addEventListener("click", function () {
+                alert("수정하시겠습니까?")
+                location.href = "http://localhost:8080/edit"
+            })
+        }
+    }
 
     const deleteButtons = document.querySelectorAll(".delete")
     for (let i = 0; i < deleteButtons.length; i++) {
@@ -77,7 +88,3 @@ async function getUsers() {
     makeList()
     //배열안에 객체가 들어있음.
 }
-
-// 버튼 만들기 수정이랑 삭제
-//시간나면 삭제만 해오기 라우터 생성
-//자바스크립트 연결

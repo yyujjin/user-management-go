@@ -24,6 +24,11 @@ func main() {
 		c.HTML(http.StatusOK, "user-list.html", gin.H{}) 
 	})
 
+	r.GET("/edit", func(c *gin.Context) {   
+		
+		c.HTML(http.StatusOK, "edit-user.html", gin.H{}) 
+	})
+
 	type user struct {
 		Name string  `form:"name"` 
 		Age int `form:"age"` 
@@ -70,7 +75,7 @@ func main() {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
 	})
 
-	r.PUT("/users/:id", func(c *gin.Context) {
+	r.PUT("/edit/:id", func(c *gin.Context) {
 		var editUser user
 		//Bind => 바디에 담긴 데이터를 구조체에 담아주는 함수.
 		if err := c.Bind(&editUser); err != nil {
