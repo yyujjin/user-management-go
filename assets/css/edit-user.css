@@ -42,8 +42,8 @@ h1{
     top: 450px;
     left: 1130px;
 }
-#submit{
-    background-image: url(../images/제출\ 아이콘.png);
+#edit{
+    background-image: url(../images/수정하기\ 아이콘.png);
     background-color:rgb(255, 255, 255);
     border: solid 1px rgb(185, 179, 179);
     background-size: cover;
