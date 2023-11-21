@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -37,6 +38,7 @@ func main() {
 	}
 
 	users := []user{} 
+	
 	//상황에 따라 라우터마다 컨텐츠 타입이 달라질 수 있음. 
 	//제출하기 버튼을 누르면 이코드 실행됨. 
 	r.POST("/users", func(c *gin.Context) {
@@ -106,7 +108,35 @@ func main() {
 	r.GET("/users", func(c *gin.Context) {   
 		fmt.Println(users)
 		c.JSON(200, users)
+		
+	})
+
+	getEditUser := []user{}
+	r.POST("/sendEditUser", func(c *gin.Context) {
+		//배열에 아무것도 없는데 작동시키면 에러나서 배열길이 0 일때는 작동 막음 
+		for i:=1; i<=len(getEditUser); i++ {
+			getEditUser = getEditUser[:len(getEditUser)-1]
+		}
+		fmt.Println(getEditUser)
+		var editUser user
+		if err := c.Bind(&editUser); err != nil {
+			return 
+		}
+		getEditUser = append(getEditUser,editUser )
+		// fmt.Println(editUser)
+		c.JSON(http.StatusOK, gin.H{
+			
+			"user" : getEditUser, 
+
+		})
+		fmt.Println(getEditUser)
 	})
 	
+	r.GET("/getEditUser", func(c *gin.Context) {   
+		fmt.Println(getEditUser)
+		c.JSON(200, getEditUser)
+	})
+
+
 	r.Run()
 }

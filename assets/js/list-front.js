@@ -23,7 +23,7 @@ function makeList() {
     }
     goToEdit()
     //수정 버튼 누를 edit 페이지 이동 함수
-    function goToEdit() {
+     function goToEdit() {
         const edit = document.querySelectorAll(".edit")
         for (let i = 0; i < edit.length; i++) {
             edit[i].addEventListener("click", function () {
