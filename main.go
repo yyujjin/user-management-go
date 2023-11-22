@@ -76,28 +76,28 @@ func main() {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
 	})
 
-
+//////잠시 놔두자 
 	//edit-user 페이지에서 input에 입력 다하고 눌렀을 때 적용되는 함수 
-	r.PUT("/edit/:id", func(c *gin.Context) {
-		var editUser user
-		//Bind => 바디에 담긴 데이터를 구조체에 담아주는 함수.
-		if err := c.Bind(&editUser); err != nil {
-			return 
-		}
+	// r.PUT("/edit/:id", func(c *gin.Context) {
+	// 	var editUser user
+	// 	//Bind => 바디에 담긴 데이터를 구조체에 담아주는 함수.
+	// 	if err := c.Bind(&editUser); err != nil {
+	// 		return 
+	// 	}
 		
-		id,err:= strconv.Atoi (c.Param("id"))  
-		if err != nil {
-			fmt.Println("경고")
-			c.IndentedJSON(http.StatusNotFound, gin.H{"message": "올바르지 않은 ID입니다."})
-			return
-		}
+	// 	id,err:= strconv.Atoi (c.Param("id"))  
+	// 	if err != nil {
+	// 		fmt.Println("경고")
+	// 		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "올바르지 않은 ID입니다."})
+	// 		return
+	// 	}
 
-		users[id]=editUser
+	// 	users[id]=editUser
 		
-		c.JSON(http.StatusOK, gin.H{
-			"user" : users[id], 
-		})
-	})
+	// 	c.JSON(http.StatusOK, gin.H{
+	// 		"user" : users[id], 
+	// 	})
+	// })
 
 
 
@@ -115,6 +115,7 @@ func main() {
 
 //list 에 수정 버튼 눌렀을 때 작동 되는 함수 
 	tempUser := []user{}
+	var tempIdex int
 	r.PUT("/getEditUser/:id", func(c *gin.Context) {
 		for i:=1; i<=len(tempUser); i++ {
 						tempUser = tempUser[:len(tempUser)-1]
@@ -133,6 +134,8 @@ func main() {
 			return
 		}
 		tempUser = append(tempUser,users[id])
+		tempIdex = id
+		fmt.Println(tempIdex)
 
 		c.JSON(http.StatusOK, gin.H{
 			"user" : users[id], 
@@ -145,6 +148,22 @@ func main() {
 		c.JSON(200, tempUser)
 	})
 
+
+
+	///수정 
+	r.POST("/edit", func(c *gin.Context) {
+		var newUser user
+		if err := c.Bind(&newUser); err != nil {
+			return 
+		}
+		users[tempIdex] = newUser
+		fmt.Println(users)
+		c.JSON(http.StatusOK, gin.H{
+			
+			"user" : newUser, 
+		})
+		// c.IndentedJSON(http.StatusNotFound, gin.H{"message": "수정이 완료 되었습니다!"})
+	})
 
 	r.Run()
 }

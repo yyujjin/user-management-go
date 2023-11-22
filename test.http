@@ -7,7 +7,7 @@
 POST {{server}}/users
 Content-Type: application/x-www-form-urlencoded 
 
-name= 3
+name= 요
 &age=3
 &gender=0
 &job=응가
@@ -22,7 +22,7 @@ DELETE  http://localhost:8080/users/10
 PUT {{server}}/edit/0
 Content-Type: application/x-www-form-urlencoded 
 
-name=박수현
+name=응아
 &age=28
 &gender=0
 &job=개발자 선생님
@@ -36,11 +36,11 @@ Content-Type: application/x-www-form-urlencoded
 
 
 
+###
+POST {{server}}/edit
+Content-Type: application/x-www-form-urlencoded 
 
-# POST {{server}}/sendEditUser
-# Content-Type: application/x-www-form-urlencoded 
-
-# name=박수현
-# &age=28
-# &gender=0
-# &job=개발자 선생님
+name=응아
+&age=28
+&gender=0
+&job=개발자 선생님
