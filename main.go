@@ -111,8 +111,11 @@ func main() {
 		
 	})
 
+
+
+	
 	getEditUser := []user{}
-	r.POST("/sendEditUser/:?", func(c *gin.Context) {
+	r.POST("/sendEditUser", func(c *gin.Context) {
 		//배열에 아무것도 없는데 작동시키면 에러나서 배열길이 0 일때는 작동 막음 
 		for i:=1; i<=len(getEditUser); i++ {
 			getEditUser = getEditUser[:len(getEditUser)-1]

@@ -12,53 +12,36 @@ function makeList() {
                 <td><button class="delete"></button></td>
                 <td><button class="edit"></button></td>
             </tr>`
-    }
-    // 성별을 한글로 바꿔주는 함수
-    function getGender(i) {
-        if (users[i].Gender == 0) {
-            return "남자"
-        } else {
-            return "여자"
-        }
-    }
-      // edit[i].addEventListener("click", function () {
-            //     alert("수정하시겠습니까?")
-            //     location.href = "http://localhost:8080/edit"
-            // })
+    } 
     goToEdit()
-    //수정 버튼 누를 edit 페이지 이동 함수
-    function goToEdit() {
-        const edit = document.querySelectorAll(".edit")
-        for (let i = 0; i < edit.length; i++) {
-            edit[i].addEventListener ("click", async function () {
-                alert("수정하시겠습니까?")
-                
-                await fetch(
-                    `http://localhost:8080/sendEditUser/
-                    name=${users[i].Name}
-                    &age=${users[i].Age}
-                    &gender=${users[i].Gender}
-                    &job=${users[i].Job}`,
-                    
-                    {
-                        method: "POST",
-                    }
-                )
-                location.href = "http://localhost:8080/edit"
-            })
-        
-        }
-    }
+}
 
-    
-    const deleteButtons = document.querySelectorAll(".delete")
-    for (let i = 0; i < deleteButtons.length; i++) {
-        deleteButtons[i].addEventListener("click", function () {
-            deleteUser(i)
+const deleteButtons = document.querySelectorAll(".delete")
+for (let i = 0; i < deleteButtons.length; i++) {
+    deleteButtons[i].addEventListener("click", function () {
+        deleteUser(i)
+    })
+}
+
+function goToEdit() {
+    const edit = document.querySelectorAll(".edit")
+    for (let i = 0; i < edit.length; i++) {
+        edit[i].addEventListener("click", function () {
+            alert("수정하시겠습니까?")
+
+            location.href = "http://localhost:8080/edit"
         })
     }
 }
 
+
+function getGender(i) {
+    if (users[i].Gender == 0) {
+        return "남자"
+    } else {
+        return "여자"
+    }
+}
 async function deleteUser(i) {
     //confirm = 알림창에 에/아니오 나오는 거
     // confirm에서 예를 누르면 = true 아니오를 누르면 = false
