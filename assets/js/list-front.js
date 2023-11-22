@@ -21,18 +21,36 @@ function makeList() {
             return "여자"
         }
     }
+      // edit[i].addEventListener("click", function () {
+            //     alert("수정하시겠습니까?")
+            //     location.href = "http://localhost:8080/edit"
+            // })
     goToEdit()
     //수정 버튼 누를 edit 페이지 이동 함수
-     function goToEdit() {
+    function goToEdit() {
         const edit = document.querySelectorAll(".edit")
         for (let i = 0; i < edit.length; i++) {
-            edit[i].addEventListener("click", function () {
+            edit[i].addEventListener ("click", async function () {
                 alert("수정하시겠습니까?")
+                
+                await fetch(
+                    `http://localhost:8080/sendEditUser/
+                    name=${users[i].Name}
+                    &age=${users[i].Age}
+                    &gender=${users[i].Gender}
+                    &job=${users[i].Job}`,
+                    
+                    {
+                        method: "POST",
+                    }
+                )
                 location.href = "http://localhost:8080/edit"
             })
+        
         }
     }
 
+    
     const deleteButtons = document.querySelectorAll(".delete")
     for (let i = 0; i < deleteButtons.length; i++) {
         deleteButtons[i].addEventListener("click", function () {
