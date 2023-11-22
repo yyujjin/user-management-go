@@ -1,5 +1,5 @@
 
-
+//4. 바로 호출
 getUsers()
 
 
@@ -7,7 +7,12 @@ getUsers()
 
 let user = []
 async function getUsers() {
-    const res = await fetch("http://localhost:8080/get")
+    //5. 실행
+    const a = location.search // ?id=1
+    a.slice(1) //id=1
+    b = a.split("=") //b [id,1]
+
+    const res = await fetch(`http://localhost:8080/get?id=${b[1]}`)
     const data = await res.json() 
     user = data
     console.log(user)

@@ -1,4 +1,4 @@
- package main
+package main
 
 import (
 	"fmt"
@@ -23,20 +23,24 @@ func main() {
 		
 		c.HTML(http.StatusOK, "user-list.html", gin.H{}) 
 	})
-
+//2. 실행 됨 
 	r.GET("/edit", func(c *gin.Context) {   
 		
 		c.HTML(http.StatusOK, "edit-user.html", gin.H{}) 
 	})
 
-	type user struct {
+	type user struct {  
 		Name string  `form:"name"` 
 		Age int `form:"age"` 
 		Gender int `form:"gender"` 
 		Job string `form:"job"` 
 	}
 
-	users := []user{} 
+	users := []user{
+		{"yujin", 27, 1, "백조"},
+		{"suhyeon", 28, 1, "개발자"},
+		{"river", 1, 0, "어린이"},
+	} 
 	
 	//상황에 따라 라우터마다 컨텐츠 타입이 달라질 수 있음. 
 	//제출하기 버튼을 누르면 이코드 실행됨. 
@@ -143,8 +147,15 @@ func main() {
 	})
 
 	//edit - user 페이지를 열었을 때 나오는 함수 
-	r.GET("/get", func(c *gin.Context) {   
-		fmt.Println(tempUser)
+
+	//6. 실행
+	r.GET("/get", func(c *gin.Context) { 
+		// /edit?name=yujin
+		c.Query("name") // yujin
+		// /get?id=1
+		c.Query("id") //!index!! <- number
+		id,_:= strconv.Atoi (c.Query("id"))  
+		fmt.Println(users[id])
 		c.JSON(200, tempUser)
 	})
 

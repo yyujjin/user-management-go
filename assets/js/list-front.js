@@ -16,8 +16,10 @@ function makeList() {
     const edit = document.querySelectorAll(".edit")
     for (let i = 0; i < edit.length; i++) {
         edit[i].addEventListener("click", function () {
-            editUser(i)
-            location.href = "http://localhost:8080/edit"
+            // editUser(i)
+            //아디이 넘기기
+            // front : edit?id=5 -> edit router -> edit-user.html -> edit-front.js getUsers() -> /get -> get router users[5]
+            location.href = `http://localhost:8080/edit?id=${i}`
         })
     }
 
