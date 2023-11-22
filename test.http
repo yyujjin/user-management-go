@@ -7,7 +7,7 @@
 POST {{server}}/users
 Content-Type: application/x-www-form-urlencoded 
 
-name=똥
+name= 3
 &age=3
 &gender=0
 &job=응가
@@ -19,7 +19,7 @@ GET http://localhost:8080/users
 DELETE  http://localhost:8080/users/10
 
 ###
-PUT {{server}}/users/2
+PUT {{server}}/edit/0
 Content-Type: application/x-www-form-urlencoded 
 
 name=박수현
@@ -28,13 +28,19 @@ name=박수현
 &job=개발자 선생님
 
 ###
-POST {{server}}/sendEditUser
-Content-Type: application/x-www-form-urlencoded 
-
-name=박수현
-&age=28
-&gender=0
-&job=개발자 선생님
+GET http://localhost:8080/get
 
 ###
-GET http://localhost:8080/getEditUser
+PUT {{server}}/getEditUser/1
+Content-Type: application/x-www-form-urlencoded 
+
+
+
+
+# POST {{server}}/sendEditUser
+# Content-Type: application/x-www-form-urlencoded 
+
+# name=박수현
+# &age=28
+# &gender=0
+# &job=개발자 선생님

@@ -1,5 +1,5 @@
 
-const tbody = document.querySelector("tbody")
+
 getUsers()
 
 
@@ -7,15 +7,16 @@ getUsers()
 
 let user = []
 async function getUsers() {
-    const res = await fetch("http://localhost:8080/getEditUser")
+    const res = await fetch("http://localhost:8080/get")
     const data = await res.json() 
     user = data
     console.log(user)
     makeList()
-    //배열안에 객체가 들어있음.
+    
 }
 
 function makeList() {
+    const tbody = document.querySelector("tbody")
     tbody.innerHTML = ""
     tbody.innerHTML += `<tr>
                 <td>${user[0].Name}</td>
@@ -42,6 +43,7 @@ function getGender() {
 function rewrite() {
     const edit = document.querySelector("#edit")
     edit.addEventListener("click", function () {
+        const tbody = document.querySelector("tbody")
         tbody.innerHTML = ""
         tbody.innerHTML = `<form action="/users" method="post">
             <tr>

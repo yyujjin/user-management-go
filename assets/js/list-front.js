@@ -12,28 +12,39 @@ function makeList() {
                 <td><button class="delete"></button></td>
                 <td><button class="edit"></button></td>
             </tr>`
-    } 
-    goToEdit()
-}
-
-const deleteButtons = document.querySelectorAll(".delete")
-for (let i = 0; i < deleteButtons.length; i++) {
-    deleteButtons[i].addEventListener("click", function () {
-        deleteUser(i)
-    })
-}
-
-function goToEdit() {
+    }
     const edit = document.querySelectorAll(".edit")
     for (let i = 0; i < edit.length; i++) {
         edit[i].addEventListener("click", function () {
-            alert("수정하시겠습니까?")
-
+            editUser(i)
             location.href = "http://localhost:8080/edit"
+        })
+    }
+
+    const deleteButtons = document.querySelectorAll(".delete")
+    for (let i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener("click", function () {
+            deleteUser(i)
         })
     }
 }
 
+async function editUser(i) {
+    const confirmDelete = confirm("삭제하시겠습니까?")
+    if (!confirmDelete) {
+        return
+    }
+    console.log(i)
+
+    try {
+        await fetch(`http://localhost:8080/getEditUser/${i}`, {
+            method: "PUT",
+        })
+    } catch (error) {
+        // 네트워크 오류 등 예외 처리
+        console.error("네트워크 오류:", error)
+    }
+}
 
 function getGender(i) {
     if (users[i].Gender == 0) {

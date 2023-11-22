@@ -10,9 +10,8 @@ import (
 
 func main() {
   	r := gin.Default() 
-	r.Static("/assets", "./assets") // 정적(이미지 같이 수정되지 않는 파일) 파일 서비스
+	r.Static("/assets", "./assets") 
   	r.LoadHTMLGlob("templates/*")
-	// 1. 밑에 주소를 브라우저로 접속하면 
 	
 
 	r.GET("/add", func(c *gin.Context) {   
@@ -77,6 +76,8 @@ func main() {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
 	})
 
+
+	//edit-user 페이지에서 input에 입력 다하고 눌렀을 때 적용되는 함수 
 	r.PUT("/edit/:id", func(c *gin.Context) {
 		var editUser user
 		//Bind => 바디에 담긴 데이터를 구조체에 담아주는 함수.
@@ -84,9 +85,6 @@ func main() {
 			return 
 		}
 		
-		
-		// 1. 주소로 인덱스 파라미터 받기
-		// 2. users의 받은 인덱스의 요소를 출력
 		id,err:= strconv.Atoi (c.Param("id"))  
 		if err != nil {
 			fmt.Println("경고")
@@ -104,7 +102,7 @@ func main() {
 
 
 
-	//실제 users 배열을 가지고 오는 라우터를 만들어야 함.
+	//user-list 창 열었을 때 나오는 함수 
 	r.GET("/users", func(c *gin.Context) {   
 		fmt.Println(users)
 		c.JSON(200, users)
@@ -113,33 +111,78 @@ func main() {
 
 
 
-	
-	getEditUser := []user{}
-	r.POST("/sendEditUser", func(c *gin.Context) {
-		//배열에 아무것도 없는데 작동시키면 에러나서 배열길이 0 일때는 작동 막음 
-		for i:=1; i<=len(getEditUser); i++ {
-			getEditUser = getEditUser[:len(getEditUser)-1]
-		}
-		fmt.Println(getEditUser)
+	 
+
+//list 에 수정 버튼 눌렀을 때 작동 되는 함수 
+	tempUser := []user{}
+	r.PUT("/getEditUser/:id", func(c *gin.Context) {
+		for i:=1; i<=len(tempUser); i++ {
+						tempUser = tempUser[:len(tempUser)-1]
+					}
 		var editUser user
+		//Bind => 바디에 담긴 데이터를 구조체에 담아주는 함수.
 		if err := c.Bind(&editUser); err != nil {
 			return 
 		}
-		getEditUser = append(getEditUser,editUser )
-		// fmt.Println(editUser)
-		c.JSON(http.StatusOK, gin.H{
-			
-			"user" : getEditUser, 
+		
+		
+		id,err:= strconv.Atoi (c.Param("id"))  
+		if err != nil {
+			fmt.Println("경고")
+			c.IndentedJSON(http.StatusNotFound, gin.H{"message": "올바르지 않은 ID입니다."})
+			return
+		}
+		tempUser = append(tempUser,users[id])
 
+		c.JSON(http.StatusOK, gin.H{
+			"user" : users[id], 
 		})
-		fmt.Println(getEditUser)
 	})
-	
-	r.GET("/getEditUser", func(c *gin.Context) {   
-		fmt.Println(getEditUser)
-		c.JSON(200, getEditUser)
+
+	//edit - user 페이지를 열었을 때 나오는 함수 
+	r.GET("/get", func(c *gin.Context) {   
+		fmt.Println(tempUser)
+		c.JSON(200, tempUser)
 	})
 
 
 	r.Run()
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// getEditUser := []user{}
+// r.POST("/sendEditUser", func(c *gin.Context) {
+// //배열에 아무것도 없는데 작동시키면 에러나서 배열길이 0 일때는 작동 막음 
+// 	for i:=1; i<=len(getEditUser); i++ {
+// 			getEditUser = getEditUser[:len(getEditUser)-1]
+// 		}
+// 	fmt.Println(getEditUser)
+// 		var editUser user
+// 	if err := c.Bind(&editUser); err != nil {
+// 				return
+// 	}
+// getEditUser = append(getEditUser,editUser )
+// 		// fmt.Println(editUser)
+// 		c.JSON(http.StatusOK, gin.H{
+
+// 	"user" : getEditUser,
+	
+// 	})
+// 		fmt.Println(getEditUser) 
+// 	})
+	
+	// r.GET("/getEditUser", func(c *gin.Context) {   
+	// 	fmt.Println(crazy)
+	// 	c.JSON(200, crazy)
+	// })
