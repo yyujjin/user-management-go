@@ -1,3 +1,8 @@
+//프로그램이 코드를 읽는 순서가 어떻게 되는지 상관없는지
+//함수를 만들고 함수끼리 밑에 따로 빼두어야 하는지 아니면 함수를 호출한 곳 근처에 함수코드를 두어야 하는지
+//딜리트 버튼 라우터연결 함수는 왜 따로 빼놓았는지 그냥 const delete 버튼 부터 빼놓으면 안되는지 
+//함수를 만드는 기준 ? 몇 줄 이상부터 빼놓아야 하는지?
+
 const tbody = document.querySelector("tbody")
 
 function makeList() {
@@ -16,10 +21,10 @@ function makeList() {
     const edit = document.querySelectorAll(".edit")
     for (let i = 0; i < edit.length; i++) {
         edit[i].addEventListener("click", function () {
-            // editUser(i)
-            //아디이 넘기기
             // front : edit?id=5 -> edit router -> edit-user.html -> edit-front.js getUsers() -> /get -> get router users[5]
             location.href = `http://localhost:8080/edit?id=${i}`
+            //이건 쿼리스트링 형태로 넘기면 form 형식인건가???????
+            //쿼리스트링=form 형태 / key:value 형태 = 자바 라면서??
         })
     }
 
@@ -31,22 +36,6 @@ function makeList() {
     }
 }
 
-async function editUser(i) {
-    const confirmDelete = confirm("삭제하시겠습니까?")
-    if (!confirmDelete) {
-        return
-    }
-    console.log(i)
-
-    try {
-        await fetch(`http://localhost:8080/getEditUser/${i}`, {
-            method: "PUT",
-        })
-    } catch (error) {
-        // 네트워크 오류 등 예외 처리
-        console.error("네트워크 오류:", error)
-    }
-}
 
 function getGender(i) {
     if (users[i].Gender == 0) {
@@ -55,39 +44,22 @@ function getGender(i) {
         return "여자"
     }
 }
+
 async function deleteUser(i) {
-    //confirm = 알림창에 에/아니오 나오는 거
-    // confirm에서 예를 누르면 = true 아니오를 누르면 = false
     const confirmDelete = confirm("삭제하시겠습니까?")
-    //1.if (confirmDelete) {  =>true 일때 실행이 돼라 (줄여슨거) 어파치 트루
-    // 1.if (confirmDelete==true) { 풀어쓴 거 / 이렇게도 쓸 수 있음
-    // 2.if (!confirmDelete) { => false일때 실행이 돼라
-    // 2. if (confirmDelete==false) { => 줄여쓴거
 
     if (!confirmDelete) {
-        //false 일때 return 으로 함수 종료 시킴
         return
     }
     console.log(i)
-    //API를 부를 때 부르는 셋트 / 뭐든지간에 문제가생기면 catch로 가라
-    //awit를 쓰려면 async 있어야 함. 지금 몰라도 됨.
+   
     try {
-        // DELETE 요청을 보냅니다.
-        // : 안써도 되는 이유 => 백엔드에서 파리미터를 받는 방법이라 백엔드에서 넣었고
-        //연결 이라기보단 백에드에 있는 라우터를 호출하는거라서 : 프론트에서는 값만 넣어주면 돼서 : 없어야 함
+        
         await fetch(`http://localhost:8080/users/${i}`, {
             method: "DELETE",
         })
-
-        // 서버 응답이 성공인 경우
-        // users.splice(i, 1)
-        // console.log(users)
-        // // deleteButtons[i].splice(i,1)
-        // console.log(deleteButtons)
         getUsers()
-        // setting()
     } catch (error) {
-        // 네트워크 오류 등 예외 처리
         console.error("네트워크 오류:", error)
     }
 }
@@ -96,9 +68,8 @@ getUsers()
 let users = []
 async function getUsers() {
     const res = await fetch("http://localhost:8080/users")
-    const data = await res.json() // 그냥 이 2코드 같이 있어야지 데이터받을 수있음.
+    const data = await res.json()
     users = data
     console.log(users)
     makeList()
-    //배열안에 객체가 들어있음.
 }
