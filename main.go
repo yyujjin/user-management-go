@@ -79,7 +79,6 @@ func main() {
 	//user 수정함수 
 	r.PUT("/edit/:id", func(c *gin.Context) {
 		var editUser user
-		//Bind => 바디에 담긴 데이터를 구조체에 담아주는 함수.
 		if err := c.Bind(&editUser); err != nil {
 			return 
 		}

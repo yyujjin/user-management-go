@@ -5,7 +5,7 @@ getUsers()
 
 //첫 화면
 
-let user = []
+let user = {}
 async function getUsers() {
     //5. 실행
     const a = location.search // ?id=1
@@ -24,14 +24,14 @@ function makeList() {
     const tbody = document.querySelector("tbody")
     tbody.innerHTML = ""
     tbody.innerHTML += `<tr>
-                <td>${user[0].Name}</td>
-                <td>${user[0].Age}</td>
-                <td>${getGender()}</td>
-                <td>${user[0].Job}</td>
+                <td><input value="${user.Name}"></td>
+                <td><input value="${user.Age}"></td>
+                <td><input value="${getGender()}"></td>
+                <td><input value="${user.Job}"></td>
                 <td><button id="edit"></button></td>
             </tr>`
     getGender()
-    rewrite()
+    //input 안에 값이 담기라고 했음 
 }
 
 
@@ -40,7 +40,7 @@ function makeList() {
 
 
 function getGender() {
-    if (user[0].gender == 0) {
+    if (user.Gender == 0) {
         return "남자"
     } else {
         return "여자"
@@ -48,5 +48,5 @@ function getGender() {
 }
 
 
-
+ 
 
