@@ -51,3 +51,9 @@ h1{
     background-repeat: no-repeat;
     padding: 15px;
 }
+
+/* 왜 안먹히지 css ?? input 에  */
+input{
+    padding: 4px;
+    text-align: center;
+}

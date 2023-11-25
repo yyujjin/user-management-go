@@ -1,4 +1,6 @@
 
+//화면에 in뭐냐 
+
 //4. 바로 호출
 getUsers()
 
@@ -23,13 +25,14 @@ async function getUsers() {
 function makeList() {
     const tbody = document.querySelector("tbody")
     tbody.innerHTML = ""
-    tbody.innerHTML += `<tr>
-                <td><input value="${user.Name}"></td>
-                <td><input value="${user.Age}"></td>
-                <td><input value="${getGender()}"></td>
-                <td><input value="${user.Job}"></td>
-                <td><button id="edit"></button></td>
-            </tr>`
+    tbody.innerHTML += 
+        `<tr>
+            <td><input value="${user.Name}"></td>
+            <td><input value="${user.Age}"></td>
+            <td><input value="${getGender()}"></td>
+            <td><input value="${user.Job}"></td>
+            <td><button id="edit"></button></td>
+        </tr>`
     getGender()
     //input 안에 값이 담기라고 했음 
 }
