@@ -114,7 +114,6 @@ func main() {
 		fmt.Println(users[id])
 		c.JSON(200, users[id])
 	})
-
 	r.Run()
 }
 
