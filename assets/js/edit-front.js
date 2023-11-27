@@ -28,3 +28,26 @@ async function getUsers() {
     }
     input[4].value = user.Job
 }
+
+//form에다가 에드이벤 적용한 이유는 submit 버튼이 form 안에 포함돼있어서 한거
+//버튼은 그냥 클릭이 될 뿐 제출이 되는게 아니라서 
+//form submit 으로 에드이벤트 넣은거 
+const form = document.querySelector("form")
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    console.log("!!!!!!!!!!!!!!!!")
+}) 
+
+
+
+//form은 method는 get,post만 됨
+//form 의 기본기능은 submit버튼을 누르면 서버에 데이터를 전달하고 새로고침이 되는 것. 
+// submit을 누르면 form 기본 동작은 하지 않도록 막기
+// 1. form에다가 submit 이벤트를 연결하는 코드를 추가
+// 2. 구글 검색해서 기본 동작 막는법 적용하기
+
+// await fetch(`http://localhost:8080/edit/${}`, {
+//     method: 'PUT',
+//     headers: 'Content-Type:application/x-www-form-urlencoded',
+//     body: {} // TODO
+// })
