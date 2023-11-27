@@ -5,33 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://hangeul.pstatic.net/hangeul_static/css/NanumGgocNaeEum.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/edit-user.css">
-    <!-- //3. 실행 -->
+    <link rel="stylesheet" href="../assets/css/add-user.css">
     <script src="../assets/js/edit-front.js" defer ></script>
 </head>
 <body>
-    <h1>회원 정보 수정</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>이름</th>
-                    <th>나이</th>
-                    <th>성별</th>in
-                    <th>직업</th>
-                    <th>수정하기</th>
-                </tr>
-             </thead>
-             <tbody>
-                <tr>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><button id="submit"  type="submit"></button></td>
-                 </tr>
-            </tbody>
-        </table>
-    <a href="http://localhost:8080/add"><button class="back" >회원 등록으로 나가기</button></a>
-    <a hrevscode-file://vscode-app/c:/Users/USER/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.htmlf="http://localhost:8080/list"><button class="back" >회원 목록으로 나가기</button> </a>
+  
+    <h1>회원 수정</h1>
+
+    <form action="/users" method="post">
+        <!-- form 데이터 전달을 name="유진"&age=28이렇게 보내는데  인풋에 적은 내용이 value에 들어감 -->
+        <!-- 키는 name 속성에 적은 값이 들어간다. -->
+            <div><label>제 이름은 <input type="text" name="name" autofocus></label> 이구요</div>
+            <div><label>나이는 <input type="number" name="age"></label> 쨜 입니댜</div>
+            <div>저는
+                <label>남자<input type="radio" name="gender" id="" value="0"></label>
+                <label>여자<input type="radio" name="gender" id="" value="1"></label> 이구요
+            </div>
+            <div><label>하는 일은 <input type="text" name="job"></label> 입니당!</div>
+        <a href="http://localhost:8080/list"><button id="submit" type="submit"></button></a>
+    </form>
+    <a href="http://localhost:8080/list"><button id="back" >회원 목록으로 나가기</button></a>
 </body>
 </html>
