@@ -97,8 +97,6 @@ func main() {
 		})
 	})
 
-
-
 	//users 배열 가져오는 함수 
 	r.GET("/users", func(c *gin.Context) {   
 		fmt.Println(users)
@@ -106,20 +104,17 @@ func main() {
 		
 	})
 
-
-	//6. 실행
+	//수정 요소만 내보내는 함수
 	r.GET("/get", func(c *gin.Context) { 
 		// /edit?name=yujin
 		c.Query("name") // yujin
 		// /get?id=1
-		c.Query("id") //!index!! <- number
+		c.Query("id") //!index!! <- number 
 		id,_:= strconv.Atoi (c.Query("id"))  
 		fmt.Println(users[id])
 		c.JSON(200, users[id])
 	})
 
-
-	
 	r.Run()
 }
 

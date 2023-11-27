@@ -52,8 +52,9 @@ h1{
     padding: 15px;
 }
 
-/* 왜 안먹히지 css ?? input 에  */
+
 input{
-    padding: 4px;
+    width: 130px;
+    padding: 5px;
     text-align: center;
 }
