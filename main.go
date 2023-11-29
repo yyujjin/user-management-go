@@ -50,10 +50,13 @@ func main() {
 		}
 		users = append(users,newUser)
 		fmt.Println(users)
-		c.JSON(http.StatusOK, gin.H{
-			
-			"user" : newUser, 
-		})
+		// /list router call -> redirect
+		// re(다시) + 지시하다(direct) 다시 지시하는 것을 말한다.
+		c.Redirect(http.StatusFound, "/list")
+		//안나타나니까 필요없음
+		// c.JSON(http.StatusOK, gin.H{
+		// 	"user" : newUser, 
+		// })
 	})
 	
 	//user 삭제 함수
