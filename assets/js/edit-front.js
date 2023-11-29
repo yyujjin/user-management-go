@@ -1,12 +1,18 @@
+const id = getId()
+let user = null
 
 getUsers()
 
-let user = null
+// url에서 id를 뽑아오는 함수 만들기 -> id를 리턴
+
+function getId() {
+    const a = location.search
+    const b = a.split("=")
+    return b[1]
+}
 
 async function getUsers() {
-    const a = location.search 
-    b = a.split("=") 
-    const res = await fetch(`http://localhost:8080/get?id=${b[1]}`)
+    const res = await fetch(`http://localhost:8080/get?id=${id}`)
     const data = await res.json()
     user = data
     console.log(user)
@@ -20,14 +26,15 @@ async function getUsers() {
     }
     input[4].value = user.Job
 }
-const form = document.querySelector("form")
-form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    console.log("!!!!!!!!!!!!!!!!")
-}) 
 
-// await fetch(`http://localhost:8080/edit/${}`, {
-//     method: 'PUT',
-//     headers: 'Content-Type:application/x-www-form-urlencoded',
-//     body: {} // TODO
-// })
+const form = document.querySelector("form")
+form.addEventListener("submit", async function (event) {
+    event.preventDefault()
+    //html 에서 form 을 적을때만 get,post가능하고 이외에는 method 상관없음.
+    console.log(new FormData(form))
+    await fetch(`http://localhost:8080/edit/${id}`, {
+        method: "PUT",
+        body: new FormData(form), // TODO
+    })
+    location.href = `http://localhost:8080/list`
+})

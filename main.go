@@ -84,6 +84,7 @@ func main() {
 		}
 		
 		id,err:= strconv.Atoi (c.Param("id"))  
+		fmt.Println(id)
 		if err != nil {
 			fmt.Println("경고")
 			c.IndentedJSON(http.StatusNotFound, gin.H{"message": "올바르지 않은 ID입니다."})
